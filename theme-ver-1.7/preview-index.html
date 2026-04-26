@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chae's Blog</title>
+  <link rel="stylesheet" href="https://fonts.bunny.net/css?family=aspekta:300,400,500,600,700&display=swap">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body id="tt-body-index">
+
+  <!-- Mobile header (hidden on desktop) -->
+  <header class="mobile-header">
+    <div class="traffic-lights">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <a href="#" class="mobile-title">Chae's Blog</a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴 열기">Menu</button>
+  </header>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div id="wrap">
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <div class="blank"></div>
+
+      <!-- Traffic lights + blog title -->
+      <div class="sidebar-header">
+        <div class="traffic-lights">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <h1><a href="#">Chae's Blog</a></h1>
+      </div>
+
+      <!-- Search (near top, under title) -->
+      
+      <div class="widget search">
+        <label for="search" class="screen_out">블로그 내 검색</label>
+        <input id="search" class="search" placeholder="Search…" type="text" name="search" value="" onkeypress="if (event.keyCode == 13) { return false; }">
+      </div>
+      
+
+      <!-- Categories -->
+      <div class="widget category">
+        <a href="#" class="category-home-link">Home</a>
+        <ul class="tt_category">
+  <li><a class="link_tit" href="#">분류 전체보기 <span class="c_cnt">(25)</span></a>
+    <ul>
+      <li><a href="#">CS <span class="c_cnt">(12)</span></a>
+        <ul>
+          <li><a href="#">Algorithm <span class="c_cnt">(5)</span></a></li>
+          <li><a href="#">OS <span class="c_cnt">(4)</span></a></li>
+          <li><a href="#">Network <span class="c_cnt">(3)</span></a></li>
+        </ul>
+      </li>
+      <li class="selected"><a href="#">Design <span class="c_cnt">(8)</span></a>
+        <ul>
+          <li><a href="#">Typography <span class="c_cnt">(3)</span></a></li>
+          <li><a href="#">Color <span class="c_cnt">(5)</span></a></li>
+        </ul>
+      </li>
+      <li><a href="#">Life <span class="c_cnt">(5)</span></a></li>
+    </ul>
+  </li>
+</ul>
+      </div>
+
+      <!-- Blog Menu -->
+      <div class="widget">
+        <ul></ul>
+      </div>
+
+      <!-- Notice -->
+      
+      <div class="widget">
+        <ul>
+          
+          <li><a href="#">Site update: new theme deployed</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Links -->
+      
+      <div class="widget">
+        <ul>
+          
+          <li><a href="#" target="_blank">GitHub</a></li>
+          
+
+          <li><a href="#" target="_blank">Twitter / X</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- External Links -->
+      <div class="widget">
+        <div class="widget-label">Links</div>
+        <ul>
+          <li>
+            <a href="https://c2-h1.me" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Personal Website
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/c2-h1" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/c2-h1" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="https://open.spotify.com/user/m739r3eghchrn0jq3bnmqoi2k?si=af410dd2d6bd4d2f" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 13.5c2.67-.89 5.33-.89 8 0"/><path d="M7 10.5c3.33-1.11 6.67-1.11 10 0"/><path d="M9 7.5c2-.67 5-1 8 0"/></svg>
+              Spotify
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/cy4n1d" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              Instagram
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Counter -->
+      <div class="widget counter text-center">
+        <span class="yesterday">87</span> /
+        <span class="today">42</span> /
+        <span class="total">12,540</span>
+      </div>
+
+      <div class="blank"></div>
+    </div>
+
+    <!-- Main content -->
+    <div id="content">
+      <div class="content-box">
+
+        <div class="post-grid">
+          
+            <article class="post-icon">
+              <!-- Card view (list / index pages) -->
+              <a href="#" class="post-card">
+                <div class="post-thumb">
+                  
+                    <img src="https://picsum.photos/seed/sf1/200/200" alt="Getting Started with SF Symbols" loading="lazy">
+                  
+                </div>
+                <div class="post-meta">
+                  <div class="post-title">Getting Started with SF Symbols</div>
+                  <div class="post-date">2026.04.26</div>
+                </div>
+              </a>
+              <!-- Full article view (single post page) -->
+              <div class="post-full">
+                <a href="#" class="back-link">← All posts</a>
+                <header class="article-header">
+                  <h1 class="article-title">Getting Started with SF Symbols</h1>
+                  <div class="article-meta">
+                    <span class="article-date">2026.04.26</span>
+                  </div>
+                </header>
+                <div class="article-body">
+                  
+<h2>Getting Started with SF Symbols</h2>
+<p>SF Symbols is Apple's comprehensive icon library, tightly integrated with the San Francisco typeface. When you use SF Symbols in a web context, you get icons that feel native to macOS and iOS without any additional font loading — just a thoughtful CSS mask approach.</p>
+<h3>Setting up the icon pipeline</h3>
+<p>First, export the symbols you need as SVG from the <strong>SF Symbols app</strong>. Each symbol comes as a layered SVG with variable weights matching San Francisco's six weight variants.</p>
+<pre><code>.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  mask-image: url('symbols/folder.svg');
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  background-color: currentColor;
+}</code></pre>
+<p>This technique lets the icon inherit <code>color</code> from its parent, so active states and hover effects work without any extra CSS.</p>
+<blockquote>
+  <p>SF Symbols are Apple intellectual property. Use them only in contexts that match Apple's guidelines — typically software that runs on Apple platforms.</p>
+</blockquote>
+<h3>Variable weight in CSS</h3>
+<p>Because each weight is a separate SVG, you can swap the mask source in response to <code>font-weight</code> — though this requires a small JavaScript shim to bridge CSS custom properties and the mask attribute.</p>
+<p>In practice, using the regular weight (400) for body icons and the semibold weight (600) for toolbar icons gives the right visual rhythm on Retina displays.</p>
+
+                </div>
+                <div class="article-tags">
+                  
+                    
+                      <a href="#" class="tag">design</a>
+                    
+
+                      <a href="#" class="tag">apple</a>
+                    
+                  
+                </div>
+                
+              </div>
+            </article>
+          
+
+            <article class="post-icon">
+              <!-- Card view (list / index pages) -->
+              <a href="#" class="post-card">
+                <div class="post-thumb">
+                  
+                    <img src="https://picsum.photos/seed/finder2/200/200" alt="Mac Finder UI Breakdown" loading="lazy">
+                  
+                </div>
+                <div class="post-meta">
+                  <div class="post-title">Mac Finder UI Breakdown</div>
+                  <div class="post-date">2026.04.22</div>
+                </div>
+              </a>
+              <!-- Full article view (single post page) -->
+              <div class="post-full">
+                <a href="#" class="back-link">← All posts</a>
+                <header class="article-header">
+                  <h1 class="article-title">Mac Finder UI Breakdown</h1>
+                  <div class="article-meta">
+                    <span class="article-date">2026.04.22</span>
+                  </div>
+                </header>
+                <div class="article-body">
+                  <p>A deep dive into every component of the macOS Finder sidebar — padding, blur values, and selection states.</p>
+                </div>
+                <div class="article-tags">
+                  
+                    
+                      <a href="#" class="tag">macOS</a>
+                    
+
+                      <a href="#" class="tag">UI</a>
+                    
+
+                      <a href="#" class="tag">design</a>
+                    
+                  
+                </div>
+                
+              </div>
+            </article>
+          
+
+            <article class="post-icon">
+              <!-- Card view (list / index pages) -->
+              <a href="#" class="post-card">
+                <div class="post-thumb">
+                  
+                    <img src="https://picsum.photos/seed/tist3/200/200" alt="Building a Tistory Theme from Scratch" loading="lazy">
+                  
+                </div>
+                <div class="post-meta">
+                  <div class="post-title">Building a Tistory Theme from Scratch</div>
+                  <div class="post-date">2026.04.18</div>
+                </div>
+              </a>
+              <!-- Full article view (single post page) -->
+              <div class="post-full">
+                <a href="#" class="back-link">← All posts</a>
+                <header class="article-header">
+                  <h1 class="article-title">Building a Tistory Theme from Scratch</h1>
+                  <div class="article-meta">
+                    <span class="article-date">2026.04.18</span>
+                  </div>
+                </header>
+                <div class="article-body">
+                  <p>Tistory uses server-side template tags that can't be previewed locally — until you build a mock pipeline.</p>
+                </div>
+                <div class="article-tags">
+                  
+                    
+                      <a href="#" class="tag">dev</a>
+                    
+
+                      <a href="#" class="tag">tistory</a>
+                    
+                  
+                </div>
+                
+              </div>
+            </article>
+          
+
+            <article class="post-icon">
+              <!-- Card view (list / index pages) -->
+              <a href="#" class="post-card">
+                <div class="post-thumb">
+                  
+                    <img src="https://picsum.photos/seed/type4/200/200" alt="Typography in Digital Interfaces" loading="lazy">
+                  
+                </div>
+                <div class="post-meta">
+                  <div class="post-title">Typography in Digital Interfaces</div>
+                  <div class="post-date">2026.04.14</div>
+                </div>
+              </a>
+              <!-- Full article view (single post page) -->
+              <div class="post-full">
+                <a href="#" class="back-link">← All posts</a>
+                <header class="article-header">
+                  <h1 class="article-title">Typography in Digital Interfaces</h1>
+                  <div class="article-meta">
+                    <span class="article-date">2026.04.14</span>
+                  </div>
+                </header>
+                <div class="article-body">
+                  <p>San Francisco, Inter, and Noto Sans — a comparison of the three fonts I use across all my projects.</p>
+                </div>
+                <div class="article-tags">
+                  
+                    
+                      <a href="#" class="tag">typography</a>
+                    
+
+                      <a href="#" class="tag">design</a>
+                    
+                  
+                </div>
+                
+              </div>
+            </article>
+          
+
+            <article class="post-icon">
+              <!-- Card view (list / index pages) -->
+              <a href="#" class="post-card">
+                <div class="post-thumb">
+                  
+                </div>
+                <div class="post-meta">
+                  <div class="post-title">Color Theory for Developers</div>
+                  <div class="post-date">2026.04.10</div>
+                </div>
+              </a>
+              <!-- Full article view (single post page) -->
+              <div class="post-full">
+                <a href="#" class="back-link">← All posts</a>
+                <header class="article-header">
+                  <h1 class="article-title">Color Theory for Developers</h1>
+                  <div class="article-meta">
+                    <span class="article-date">2026.04.10</span>
+                  </div>
+                </header>
+                <div class="article-body">
+                  <p>The OKLCH color space makes it trivial to create perceptually uniform palette steps.</p>
+                </div>
+                <div class="article-tags">
+                  
+                    
+                      <a href="#" class="tag">color</a>
+                    
+                  
+                </div>
+                
+              </div>
+            </article>
+          
+
+            <article class="post-icon">
+              <!-- Card view (list / index pages) -->
+              <a href="#" class="post-card">
+                <div class="post-thumb">
+                  
+                    <img src="https://picsum.photos/seed/life6/200/200" alt="Morning Coffee & Code" loading="lazy">
+                  
+                </div>
+                <div class="post-meta">
+                  <div class="post-title">Morning Coffee & Code</div>
+                  <div class="post-date">2026.04.06</div>
+                </div>
+              </a>
+              <!-- Full article view (single post page) -->
+              <div class="post-full">
+                <a href="#" class="back-link">← All posts</a>
+                <header class="article-header">
+                  <h1 class="article-title">Morning Coffee & Code</h1>
+                  <div class="article-meta">
+                    <span class="article-date">2026.04.06</span>
+                  </div>
+                </header>
+                <div class="article-body">
+                  <p>Some thoughts on slow mornings, pourover technique, and why context switching is the enemy of flow.</p>
+                </div>
+                <div class="article-tags">
+                  
+                    
+                      <a href="#" class="tag">life</a>
+                    
+                  
+                </div>
+                
+              </div>
+            </article>
+          
+
+            <article class="post-icon">
+              <!-- Card view (list / index pages) -->
+              <a href="#" class="post-card">
+                <div class="post-thumb">
+                  
+                    <img src="https://picsum.photos/seed/min7/200/200" alt="The Art of Minimal UI" loading="lazy">
+                  
+                </div>
+                <div class="post-meta">
+                  <div class="post-title">The Art of Minimal UI</div>
+                  <div class="post-date">2026.04.02</div>
+                </div>
+              </a>
+              <!-- Full article view (single post page) -->
+              <div class="post-full">
+                <a href="#" class="back-link">← All posts</a>
+                <header class="article-header">
+                  <h1 class="article-title">The Art of Minimal UI</h1>
+                  <div class="article-meta">
+                    <span class="article-date">2026.04.02</span>
+                  </div>
+                </header>
+                <div class="article-body">
+                  <p>Minimal doesn't mean empty. It means every element earns its place.</p>
+                </div>
+                <div class="article-tags">
+                  
+                    
+                      <a href="#" class="tag">design</a>
+                    
+
+                      <a href="#" class="tag">UI</a>
+                    
+
+                      <a href="#" class="tag">minimal</a>
+                    
+                  
+                </div>
+                
+              </div>
+            </article>
+          
+        </div>
+
+        
+        <nav class="pagination" id="pagination">
+          
+            <a href="#" class="page-num">1</a>
+          
+
+            <a href="#" class="page-num">2</a>
+          
+
+            <a href="#" class="page-num">3</a>
+          
+        </nav>
+        
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./images/main.js"></script>
+</body>
+</html>

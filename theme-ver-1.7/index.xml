@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skin>
+  <information>
+    <name>Cyan Tistory Theme</name>
+    <version>1.7</version>
+    <description><![CDATA[Mac Finder-style minimal Tistory theme — translucent sidebar with traffic lights, folder-icon category tree, pill search, and Finder icon-view post grid]]></description>
+    <license><![CDATA[Free to use and modify with attribution]]></license>
+  </information>
+  <author>
+    <name>Chae</name>
+    <homepage></homepage>
+    <email></email>
+  </author>
+  <default>
+    <recentEntries>5</recentEntries>
+    <recentComments>5</recentComments>
+    <recentTrackbacks>5</recentTrackbacks>
+    <itemsOnGuestbook>10</itemsOnGuestbook>
+    <tagsInCloud>30</tagsInCloud>
+    <sortInCloud>3</sortInCloud>
+    <expandComment>0</expandComment>
+    <expandTrackback>0</expandTrackback>
+    <lengthOfRecentNotice>25</lengthOfRecentNotice>
+    <lengthOfRecentEntry>27</lengthOfRecentEntry>
+    <lengthOfRecentComment>30</lengthOfRecentComment>
+    <lengthOfRecentTrackback>30</lengthOfRecentTrackback>
+    <lengthOfLink>30</lengthOfLink>
+    <showListOnCategory>1</showListOnCategory>
+    <showListOnArchive>1</showListOnArchive>
+    <tree>
+      <color>333333</color>
+      <bgColor>ffffff</bgColor>
+      <activeColor>0068ed</activeColor>
+      <activeBgColor>e8f0fe</activeBgColor>
+      <labelLength>27</labelLength>
+      <showValue>1</showValue>
+    </tree>
+    <contentWidth>700</contentWidth>
+  </default>
+</skin>
