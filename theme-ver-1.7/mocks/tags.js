@@ -39,6 +39,38 @@ const FULL_POST_DESC = `
 <blockquote>
   <p>SF Symbols are Apple intellectual property. Use them only in contexts that match Apple's guidelines — typically software that runs on Apple platforms.</p>
 </blockquote>
+<h3>Checklist before shipping</h3>
+<ul>
+<li>Export every symbol at the regular and semibold weights — mixing weights inside one toolbar reads as a rendering bug, especially on non-Retina displays where the stems land on different subpixels.</li>
+<li>Check the mask fallback in Safari 15 and older, since <code>mask-image</code> without the <code>-webkit-</code> prefix silently fails there and the icon collapses to a solid square.</li>
+<li>Nested rules to watch:
+<ul>
+<li>Inline icons inherit <code>line-height</code>, so a 1.8 body leading pushes them off the baseline.</li>
+<li>Buttons need an explicit <code>vertical-align: -0.125em</code>.</li>
+</ul>
+</li>
+<li>한글 본문에서도 줄바꿈이 마커 기준으로 들여쓰기 되는지 확인한다. 두 번째 줄이 마커 아래로 내려가면 안 되고, 첫 줄 텍스트 시작점에 맞춰 정렬되어야 한다.</li>
+</ul>
+<h3>Ordered build steps</h3>
+<ol>
+<li>Install the SF Symbols app and pick the symbol set you need.</li>
+<li>Run the export script:
+<ol>
+<li>Normalize the viewBox to 24×24.</li>
+<li>Strip the layer metadata Apple ships in each file.</li>
+</ol>
+</li>
+<li>Drop the SVGs into <code>images/symbols/</code> and reference them from the mask rule above.</li>
+</ol>
+<h3>Weight reference</h3>
+<table>
+<thead><tr><th>Weight</th><th>CSS value</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td>Regular</td><td>400</td><td>Body icons</td></tr>
+<tr><td>Semibold</td><td>600</td><td>Toolbar icons</td></tr>
+<tr><td>Bold</td><td>700</td><td>Empty states</td></tr>
+</tbody>
+</table>
 <h3>Variable weight in CSS</h3>
 <p>Because each weight is a separate SVG, you can swap the mask source in response to <code>font-weight</code> — though this requires a small JavaScript shim to bridge CSS custom properties and the mask attribute.</p>
 <p>In practice, using the regular weight (400) for body icons and the semibold weight (600) for toolbar icons gives the right visual rhythm on Retina displays.</p>

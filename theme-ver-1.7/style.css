@@ -23,7 +23,7 @@ html, body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  font-size: 14px;
+  font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -372,6 +372,9 @@ input.search::placeholder,
   grid-column: 2;
   padding: 1rem;
   min-height: 100vh;
+  /* Grid items default to min-width:auto — without this, a wide code block
+     or table stretches the whole page and the layout scrolls sideways */
+  min-width: 0;
 }
 
 .content-box {
@@ -380,6 +383,8 @@ input.search::placeholder,
   border-radius: 1.8rem;
   padding: 2rem;
   min-height: calc(100vh - 2rem);
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 /* ── Post grid — Finder icon view ── */
@@ -496,10 +501,21 @@ body#tt-body-page .post-grid { display: block; }
 .article-body {
   width: 100%;
   max-width: none;
-  font-size: 0.97rem;
-  line-height: 1.75;
+  font-size: 1.1rem;
+  line-height: 1.8;
   color: var(--text);
   margin-bottom: 2rem;
+  /* Korean text: break at word boundaries, but never overflow the box */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Tistory wraps post content in these; make them transparent to layout */
+.article-body .contents_style,
+.article-body .tt_article_useless_p_margin {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
 }
 
 .article-body img {
@@ -508,8 +524,22 @@ body#tt-body-page .post-grid { display: block; }
   border-radius: 0.5rem;
 }
 
+.article-body iframe,
+.article-body video,
+.article-body embed,
+.article-body object {
+  max-width: 100%;
+}
+
 .article-body p {
   margin-bottom: 1rem;
+}
+
+/* Tistory adds .tt_article_useless_p_margin when the author used <br>-style
+   line breaks — honouring it stops every line becoming its own paragraph gap */
+.article-body .tt_article_useless_p_margin p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .article-body h1,
@@ -521,17 +551,81 @@ body#tt-body-page .post-grid { display: block; }
   line-height: 1.3;
 }
 
+.article-body h1 { font-size: 1.55rem; }
+.article-body h2 { font-size: 1.32rem; }
+.article-body h3 { font-size: 1.14rem; }
+.article-body h4 { font-size: 1.02rem; }
+
+/* ── Lists ──
+   The global `* { margin: 0; padding: 0 }` reset strips the browser's default
+   ul/ol padding, which pushes markers outside the content box and kills the
+   hanging indent on wrapped lines. Restore it explicitly here. */
+
+.article-body ul,
+.article-body ol {
+  margin: 0 0 1rem;
+  padding-left: 1.7em;
+  list-style-position: outside;
+}
+
+.article-body ul { list-style-type: disc; }
+.article-body ol { list-style-type: decimal; }
+
+.article-body ul ul { list-style-type: circle; }
+.article-body ul ul ul { list-style-type: square; }
+.article-body ol ol { list-style-type: lower-alpha; }
+.article-body ol ol ol { list-style-type: lower-roman; }
+
+.article-body li {
+  margin: 0 0 0.3rem;
+  padding-left: 0;
+  line-height: 1.8;
+}
+
+.article-body li:last-child {
+  margin-bottom: 0;
+}
+
+/* Nested list: tighten the gap to its parent item, keep the bottom gap off */
+.article-body li > ul,
+.article-body li > ol {
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+}
+
+/* Tistory's editor can wrap list item text in <p> — don't let that inherit
+   the paragraph bottom margin and blow the list apart */
+.article-body li > p {
+  margin-bottom: 0;
+}
+
+/* Checklist / unstyled lists from the Tistory editor */
+.article-body ul[data-ke-list-type="checklist"],
+.article-body ul.list_checklist {
+  list-style-type: none;
+  padding-left: 1.3em;
+}
+
 .article-body pre {
   background: rgba(0, 0, 0, 0.04);
   border-radius: 0.5rem;
   padding: 1rem;
   overflow-x: auto;
   margin-bottom: 1rem;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 
 .article-body code {
   font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+.article-body p > code,
+.article-body li > code {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 0.3rem;
+  padding: 0.08em 0.32em;
+  font-size: 0.92em;
 }
 
 .article-body blockquote {
@@ -539,6 +633,56 @@ body#tt-body-page .post-grid { display: block; }
   padding-left: 1rem;
   color: var(--text-secondary);
   margin-bottom: 1rem;
+}
+
+.article-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.article-body hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+/* Tables: scroll instead of breaking the layout */
+.article-body table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.article-body th,
+.article-body td {
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.7rem;
+  text-align: left;
+}
+
+.article-body th {
+  background: rgba(0, 0, 0, 0.04);
+  font-weight: 600;
+}
+
+/* Tistory image blocks */
+.article-body figure {
+  margin: 0 0 1rem;
+}
+
+.article-body figure.alignCenter,
+.article-body figure[data-ke-align="alignCenter"] {
+  text-align: center;
+}
+
+.article-body figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.86rem;
+  color: var(--muted);
+  text-align: center;
 }
 
 /* ── Tags ── */
