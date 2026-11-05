@@ -80,6 +80,7 @@ module.exports = {
   scalars: {
     '[##_title_##]': "Chae's Blog",
     '[##_blog_link_##]': '#',
+    '[##_owner_url_##]': '#',
     '[##_count_today_##]': '42',
     '[##_count_yesterday_##]': '87',
     '[##_count_total_##]': '12,540',
