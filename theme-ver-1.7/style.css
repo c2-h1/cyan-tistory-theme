@@ -549,6 +549,69 @@ body#tt-body-page .post-card { display: none; }
 body#tt-body-page .post-full { display: block; }
 body#tt-body-page .post-grid { display: block; }
 
+/* ── Password-protected post ── */
+
+.post-thumb-lock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  background: #e6e6e6;
+}
+
+.protected-form {
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.protected-msg {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.protected-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.protected-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.55rem 0.8rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+}
+
+.protected-input:focus {
+  border-color: var(--active);
+  box-shadow: 0 0 0 3px var(--active-bg);
+}
+
+.protected-btn {
+  padding: 0.55rem 1.1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: #fff;
+  background: var(--active);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.protected-btn:hover {
+  opacity: 0.88;
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;

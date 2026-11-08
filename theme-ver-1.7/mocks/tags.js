@@ -151,6 +151,10 @@ module.exports = {
     },
   ],
 
+  protectedArticles: [
+    { id: 101, title: '비밀번호로 보호된 글', link: '#', date: '2026.04.28' },
+  ],
+
   pages: [
     { num: '1', link: 'href="#"' },
     { num: '2', link: 'href="#"' },

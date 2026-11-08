@@ -176,6 +176,40 @@
               </div>
             </article>
           </s_article_rep>
+
+          <!-- Password-protected posts: Tistory renders this block INSTEAD of
+               <s_article_rep>, so without it protected posts vanish entirely. -->
+          <s_article_protected>
+            <article class="post-icon post-protected">
+              <!-- Card view (list / index pages) -->
+              <a href="[##_article_rep_link_##]" class="post-card">
+                <div class="post-thumb post-thumb-lock">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                </div>
+                <div class="post-meta">
+                  <div class="post-title">[##_article_rep_title_##]</div>
+                  <div class="post-date">[##_article_rep_date_##]</div>
+                </div>
+              </a>
+              <!-- Password form (single post page) -->
+              <div class="post-full">
+                <a href="[##_blog_link_##]" class="back-link">← All posts</a>
+                <header class="article-header">
+                  <h1 class="article-title">[##_article_rep_title_##]</h1>
+                  <div class="article-meta">
+                    <span class="article-date">[##_article_rep_date_##]</span>
+                  </div>
+                </header>
+                <div class="protected-form">
+                  <p class="protected-msg">보호된 글입니다. 비밀번호를 입력해 주세요.</p>
+                  <div class="protected-row">
+                    <input type="password" id="[##_article_password_##]" class="protected-input" placeholder="비밀번호" autocomplete="off" onkeydown="if (event.keyCode == 13) { [##_article_dissolve_##]; return false; }">
+                    <button type="button" class="protected-btn" onclick="[##_article_dissolve_##]; return false;">확인</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </s_article_protected>
         </div>
 
         <s_paging>

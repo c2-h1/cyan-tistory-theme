@@ -88,7 +88,7 @@ function processArticle(innerHtml, article) {
   return h;
 }
 
-function buildPage(skinHtml, bodyId) {
+function buildPage(skinHtml, bodyId, opts = {}) {
   let html = skinHtml;
 
   // 1. Strip <s_t3> wrapper (server-only injection tag)
@@ -113,7 +113,20 @@ function buildPage(skinHtml, bodyId) {
 
   // 5. Articles: on detail page render one full article, on index render all as cards
   const articles = bodyId === 'tt-body-page' ? mocks.articles.slice(0, 1) : mocks.articles;
-  html = expandRep(html, 's_article_rep', articles, processArticle);
+  // opts.protectedOnly: simulate viewing a password-protected post (Tistory renders
+  // <s_article_protected> instead of <s_article_rep>)
+  const normal = opts.protectedOnly ? [] : articles;
+  const locked = opts.protectedOnly
+    ? mocks.protectedArticles.slice(0, 1)
+    : (bodyId === 'tt-body-page' ? [] : mocks.protectedArticles);
+  html = expandRep(html, 's_article_rep', normal, processArticle);
+  html = expandRep(html, 's_article_protected', locked, (t, a) =>
+    t.replaceAll('[##_article_rep_link_##]', a.link)
+     .replaceAll('[##_article_rep_title_##]', a.title)
+     .replaceAll('[##_article_rep_date_##]', a.date)
+     .replaceAll('[##_article_password_##]', 'protected' + a.id)
+     .replaceAll('[##_article_dissolve_##]', 'void(0)')
+  );
 
   // 6. Pagination: expand reps, unwrap wrapper
   html = expandRep(html, 's_paging_rep', mocks.pages, (t, page) =>
@@ -141,3 +154,7 @@ console.log('preview-index.html written');
 const pageHtml = buildPage(skinHtml, 'tt-body-page');
 fs.writeFileSync(path.join(__dirname, 'preview-page.html'), pageHtml, 'utf8');
 console.log('preview-page.html written');
+
+const protectedHtml = buildPage(skinHtml, 'tt-body-page', { protectedOnly: true });
+fs.writeFileSync(path.join(__dirname, 'preview-protected.html'), protectedHtml, 'utf8');
+console.log('preview-protected.html written');

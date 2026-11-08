@@ -8,6 +8,8 @@ const shots = [
   { file: 'preview-index.html', out: 'preview-index-mobile.png',  w: 390,  h: 844 },
   { file: 'preview-page.html',  out: 'preview-page-desktop.png',  w: 1280, h: 900 },
   { file: 'preview-page.html',  out: 'preview-page-mobile.png',   w: 390,  h: 844 },
+  { file: 'preview-protected.html', out: 'preview-protected-desktop.png', w: 1280, h: 900 },
+  { file: 'preview-protected.html', out: 'preview-protected-mobile.png',  w: 390,  h: 844 },
 ];
 
 (async () => {
