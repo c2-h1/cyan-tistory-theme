@@ -570,12 +570,21 @@ body#tt-body-page .post-grid { display: block; }
   align-items: center;
   justify-content: center;
   padding: 16px;
-  /* fades the page the way macOS dims a window behind a sheet:
-     white -> #ccc, near-black text -> mid gray */
+}
+
+/* Dim layer is separate so it can fade independently of the dialog.
+   Fades the page the way macOS dims a window behind a sheet:
+   white -> #ccc, near-black text -> mid gray. */
+.protected-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: rgba(179, 179, 179, 0.67);
+  animation: protected-dim-in 200ms linear both;
 }
 
 .protected-dialog {
+  position: relative;
   width: 260px;
   box-sizing: border-box;
   padding-bottom: 16px;
@@ -589,6 +598,11 @@ body#tt-body-page .post-grid { display: block; }
     0 0 0 0.5px rgba(0, 0, 0, 0.35),
     inset 0 0 0 0.5px rgba(255, 255, 255, 0.9),
     0 10px 40px rgba(0, 0, 0, 0.2);
+  /* Open (timed from a 30fps macOS recording): fades in over ~150ms while
+     growing from 90%, overshoots to 101.5%, settles at 100% by ~230ms. */
+  animation:
+    protected-fade-in 150ms linear both,
+    protected-pop-in 233ms both;
 }
 
 .protected-icon {
@@ -664,6 +678,48 @@ body#tt-body-page .post-grid { display: block; }
 
 .protected-btn:active {
   filter: brightness(0.92);
+}
+
+/* Close: the sheet goes inactive at once (blue -> gray, like macOS),
+   then shrinks to ~91% and fades out while the dim lifts. */
+.protected-overlay.is-closing::before {
+  animation: protected-dim-out 200ms linear both;
+}
+
+.protected-overlay.is-closing .protected-dialog {
+  animation:
+    protected-fade-out 233ms cubic-bezier(0.15, 0.7, 0.45, 1) both,
+    protected-shrink-out 233ms linear both;
+}
+
+.protected-overlay.is-closing .protected-btn-primary {
+  color: rgba(0, 0, 0, 0.85);
+  background: #ddd;
+}
+
+@keyframes protected-dim-in   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes protected-dim-out  { from { opacity: 1; } to { opacity: 0; } }
+@keyframes protected-fade-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes protected-fade-out { from { opacity: 1; } to { opacity: 0; } }
+
+@keyframes protected-pop-in {
+  0%   { transform: scale(0.9);   animation-timing-function: cubic-bezier(0.42, 0, 1, 1); }
+  71%  { transform: scale(1.015); animation-timing-function: cubic-bezier(0, 0, 0.58, 1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes protected-shrink-out {
+  from { transform: scale(1); }
+  to   { transform: scale(0.91); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .protected-overlay::before,
+  .protected-dialog,
+  .protected-overlay.is-closing::before,
+  .protected-overlay.is-closing .protected-dialog {
+    animation: none;
+  }
 }
 
 .back-link {

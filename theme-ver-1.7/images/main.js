@@ -39,8 +39,34 @@
     });
   }
 
+  // Protected-post sheet: Cancel / Escape play the close animation, then leave.
+  function initProtectedSheet() {
+    var overlay = document.querySelector('body#tt-body-page .protected-overlay');
+    if (!overlay) return;
+    var cancel = overlay.querySelector('.protected-cancel');
+    var closing = false;
+
+    function close() {
+      if (closing) return;
+      closing = true;
+      if (document.activeElement) document.activeElement.blur();
+      overlay.classList.add('is-closing');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      setTimeout(function () {
+        if (history.length > 1) history.back();
+        else location.href = (cancel && cancel.getAttribute('data-home')) || '/';
+      }, reduce ? 0 : 240);
+    }
+
+    if (cancel) cancel.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+  }
+
   function init() {
     initMobileSidebar();
+    initProtectedSheet();
     expandCategories();
     labelCategoryItems();
     // Run again after a tick in case Tistory's widget JS fires after DOMContentLoaded

@@ -230,8 +230,8 @@
                     <p class="protected-msg">Enter password to read it.</p>
                     <input type="text" class="protected-field protected-user" value="cyanide" readonly tabindex="-1" aria-label="ID">
                     <input type="password" id="[##_article_password_##]" class="protected-field" placeholder="Password" autocomplete="off" autofocus onkeydown="if (event.keyCode == 13) { [##_article_dissolve_##]; return false; }">
-                    <button type="button" class="protected-btn protected-btn-primary" onclick="[##_article_dissolve_##]; return false;">Unlock</button>
-                    <button type="button" class="protected-btn" onclick="if (history.length &gt; 1) { history.back(); } else { location.href = '[##_blog_link_##]'; } return false;">Cancel</button>
+                    <button type="button" class="protected-btn protected-btn-primary" onclick="[##_article_dissolve_##]; return false;">Enter</button>
+                    <button type="button" class="protected-btn protected-cancel" data-home="[##_blog_link_##]">Cancel</button>
                   </div>
                 </div>
               </div>
