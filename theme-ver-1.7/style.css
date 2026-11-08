@@ -1118,7 +1118,9 @@ body.sidebar-open .sidebar-overlay {
 
 /* ── Mobile responsive ── */
 
-@media (max-width: 768px) {
+/* 900px: a window snapped to half of any MacBook screen (735-864px wide)
+   gets the collapsed mobile layout */
+@media (max-width: 900px) {
   #wrap {
     grid-template-columns: 1fr;
   }
