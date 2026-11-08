@@ -665,6 +665,9 @@ body#tt-body-page .post-grid { display: block; }
   display: block;
   width: calc(100% - 32px);
   height: 28px;
+  line-height: 28px;
+  text-align: center;
+  text-decoration: none;
   margin: 6px 16px 0;
   padding: 0;
   font: inherit;

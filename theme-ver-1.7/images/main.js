@@ -39,28 +39,29 @@
     });
   }
 
-  // Protected-post sheet: Cancel / Escape play the close animation, then leave.
+  // Protected-post sheet: Cancel / Escape play the close animation, then go home.
+  // Cancel is a real link to "/" so it still works if this script never runs.
   function initProtectedSheet() {
     var overlay = document.querySelector('body#tt-body-page .protected-overlay');
     if (!overlay) return;
     var cancel = overlay.querySelector('.protected-cancel');
     var closing = false;
 
-    function close() {
+    function close(e) {
+      if (e) e.preventDefault();
       if (closing) return;
       closing = true;
       if (document.activeElement) document.activeElement.blur();
       overlay.classList.add('is-closing');
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       setTimeout(function () {
-        if (history.length > 1) history.back();
-        else location.href = (cancel && cancel.getAttribute('data-home')) || '/';
+        location.href = (cancel && cancel.href) || '/';
       }, reduce ? 0 : 240);
     }
 
     if (cancel) cancel.addEventListener('click', close);
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape') close(e);
     });
   }
 
