@@ -50,8 +50,8 @@
 }
 
 :root {
-  --bg: #ececec;
-  --sidebar-bg: rgba(250, 250, 250, 0.85);
+  --bg: #eeeeee;
+  --sidebar-bg: #f8f8f8;
   --content-bg: #ffffff;
   --text: rgba(0, 0, 0, 0.85);
   --text-secondary: rgba(0, 0, 0, 0.6);
@@ -60,7 +60,15 @@
   --active: #0068ed;
   --active-bg: rgba(0, 104, 237, 0.10);
   --sidebar-width: 250px;
-  --font: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", sans-serif;
+  /* Detached cards, measured from reference/ref.jpg (2x): 8px top/bottom,
+     12px gutters, 22px corners, 1px gray hairline borders. */
+  --gutter: 12px;
+  --card-top: 8px;
+  --card-radius: 22px;
+  --sidebar-border: #d3d3d3;
+  --panel-border: #d9d9d9;
+  /* Inter (Google Fonts) for Latin; Hangul falls back to Pretendard */
+  --font: "Inter", "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", sans-serif;
 }
 
 *, *::before, *::after {
@@ -96,7 +104,7 @@ a {
 
 #wrap {
   display: grid;
-  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-columns: calc(var(--sidebar-width) + var(--gutter)) 1fr;
   min-height: 100vh;
 }
 
@@ -104,15 +112,14 @@ a {
 
 #sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: var(--card-top);
+  bottom: var(--card-top);
+  left: var(--gutter);
   width: var(--sidebar-width);
-  height: 100vh;
   overflow-y: auto;
   background: var(--sidebar-bg);
-  border-right: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--sidebar-border);
+  border-radius: var(--card-radius);
   z-index: 100;
   padding: 0.75rem 0.85rem;
   display: flex;
@@ -167,11 +174,9 @@ a {
 /* ── Widgets ── */
 
 .widget-label {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: #8d8d8d;
   padding: 0.1rem 0.5rem 0.25rem;
 }
 
@@ -434,8 +439,8 @@ input.search::placeholder,
 
 /* Active state — full-width pill highlight */
 .tt_category li.selected > a {
-  color: var(--active);
-  background: var(--active-bg);
+  color: #3267d1;
+  background: #e6e6e6;
   border-color: transparent;
 }
 
@@ -449,7 +454,7 @@ input.search::placeholder,
 
 #content {
   grid-column: 2;
-  padding: 1.5rem;
+  padding: var(--card-top) var(--gutter);
   min-height: 100vh;
   /* Grid items default to min-width:auto — without this, a wide code block
      or table stretches the whole page and the layout scrolls sideways */
@@ -458,10 +463,10 @@ input.search::placeholder,
 
 .content-box {
   background: var(--content-bg);
-  border: 1px solid var(--border);
-  border-radius: 1.8rem;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--card-radius);
   padding: 3rem;
-  min-height: calc(100vh - 2rem);
+  min-height: calc(100vh - 2 * var(--card-top));
   min-width: 0;
   overflow-wrap: break-word;
 }
@@ -522,7 +527,7 @@ input.search::placeholder,
 
 .post-title {
   font-size: 0.75rem;
-  color: var(--text);
+  color: #939393;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1120,7 +1125,7 @@ body.sidebar-open .sidebar-overlay {
   }
 
   #sidebar {
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% - 2 * var(--gutter)));
     transition: transform 0.25s ease;
   }
 
