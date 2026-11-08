@@ -185,11 +185,38 @@
                     <span class="article-date">2026.04.28</span>
                   </div>
                 </header>
-                <div class="protected-form">
-                  <p class="protected-msg">보호된 글입니다. 비밀번호를 입력해 주세요.</p>
-                  <div class="protected-row">
-                    <input type="password" id="protected101" class="protected-input" placeholder="비밀번호" autocomplete="off" onkeydown="if (event.keyCode == 13) { void(0); return false; }">
-                    <button type="button" class="protected-btn" onclick="void(0); return false;">확인</button>
+                <!-- macOS-style password sheet over a dimmed page -->
+                <div class="protected-overlay">
+                  <div class="protected-dialog" role="dialog" aria-modal="true" aria-labelledby="protected-title">
+                    <svg class="protected-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52.5 60.5" aria-hidden="true">
+                      <defs>
+                        <linearGradient id="pl-shackle" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0" stop-color="#8f9297"/><stop offset="0.45" stop-color="#e9eaec"/><stop offset="1" stop-color="#9a9da2"/>
+                        </linearGradient>
+                        <linearGradient id="pl-body" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0" stop-color="#f7c96a"/><stop offset="0.5" stop-color="#eaa83c"/><stop offset="1" stop-color="#d4891f"/>
+                        </linearGradient>
+                        <linearGradient id="pl-badge" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0" stop-color="#4a92ff"/><stop offset="1" stop-color="#1f66f2"/>
+                        </linearGradient>
+                      </defs>
+                      <path d="M9 27V17.5a15 15 0 0 1 30 0V27" fill="none" stroke="url(#pl-shackle)" stroke-width="5"/>
+                      <rect x="0" y="23.5" width="46.5" height="36.5" rx="3" fill="url(#pl-body)"/>
+                      <rect x="0.5" y="24" width="45.5" height="35.5" rx="2.5" fill="none" stroke="#b9741a" stroke-opacity="0.5"/>
+                      <rect x="26.5" y="33" width="26" height="27" rx="6.5" fill="url(#pl-badge)" stroke="#fff" stroke-opacity="0.85"/>
+                      <g stroke="#fff" stroke-width="2.3" stroke-linecap="round" fill="none">
+                        <path d="M34.6 47V40.5M37.6 46V38.5M40.6 46V38.8M43.6 47V40.8"/>
+                        <path d="M45.6 51.2l2.4-3.6"/>
+                      </g>
+                      <path d="M33.4 46h11.4v4.4c0 3.2-2.4 5.6-5.6 5.6h-0.8c-2.8 0-5-2.2-5-5z" fill="#fff"/>
+                    </svg>
+                    <p class="protected-title" id="protected-title">Protected post</p>
+                    <p class="protected-msg">This is a protected post.</p>
+                    <p class="protected-msg">Enter password to read it.</p>
+                    <input type="text" class="protected-field protected-user" value="cyanide" readonly tabindex="-1" aria-label="ID">
+                    <input type="password" id="protected101" class="protected-field" placeholder="Password" autocomplete="off" autofocus onkeydown="if (event.keyCode == 13) { void(0); return false; }">
+                    <button type="button" class="protected-btn protected-btn-primary" onclick="void(0); return false;">Unlock</button>
+                    <button type="button" class="protected-btn" onclick="if (history.length &gt; 1) { history.back(); } else { location.href = '#'; } return false;">Cancel</button>
                   </div>
                 </div>
               </div>

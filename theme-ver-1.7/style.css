@@ -559,57 +559,111 @@ body#tt-body-page .post-grid { display: block; }
   background: #e6e6e6;
 }
 
-.protected-form {
-  max-width: 420px;
-  margin: 3rem auto;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  border: 1px solid var(--border);
-  border-radius: 12px;
+/* macOS password sheet. Sizes/colors measured from a 2x macOS screenshot
+   (all values in CSS px = macOS points). */
+
+.protected-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  /* fades the page the way macOS dims a window behind a sheet:
+     white -> #ccc, near-black text -> mid gray */
+  background: rgba(179, 179, 179, 0.67);
+}
+
+.protected-dialog {
+  width: 260px;
+  box-sizing: border-box;
+  padding-bottom: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, var(--font);
+  font-size: 13px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.85);
+  background: #efefef;
+  border-radius: 24px;
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.9),
+    0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.protected-icon {
+  display: block;
+  width: 52.5px;
+  height: 60.5px;
+  margin: 22px 0 0 30.5px;
+}
+
+.protected-dialog p {
+  margin: 0 22px;
+  padding: 0;
+}
+
+.protected-title {
+  margin-top: 17px !important;
+  font-weight: 700;
 }
 
 .protected-msg {
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-  color: var(--text-secondary);
+  margin-top: 16px !important;
 }
 
-.protected-row {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.protected-input {
-  flex: 1;
-  min-width: 0;
-  padding: 0.55rem 0.8rem;
+.protected-field {
+  display: block;
+  width: calc(100% - 28px);
+  height: 26px;
+  box-sizing: border-box;
+  margin: 12px 14px 0;
+  padding: 0 6px;
   font: inherit;
-  font-size: 0.9rem;
-  color: var(--text);
+  color: rgba(0, 0, 0, 0.85);
+  caret-color: #2f6cf8;
   background: #fff;
-  border: 1px solid var(--border);
+  border: 1px solid #e4e4e4;
   border-radius: 8px;
   outline: none;
 }
 
-.protected-input:focus {
-  border-color: var(--active);
-  box-shadow: 0 0 0 3px var(--active-bg);
+.protected-user {
+  margin-top: 15px;
+  cursor: default;
+}
+
+.protected-field::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.protected-field:not([readonly]):focus {
+  border-color: #869fe7;
+  box-shadow: 0 0 0 2.5px #8ea7ed;
 }
 
 .protected-btn {
-  padding: 0.55rem 1.1rem;
+  display: block;
+  width: calc(100% - 32px);
+  height: 28px;
+  margin: 6px 16px 0;
+  padding: 0;
   font: inherit;
-  font-size: 0.9rem;
-  color: #fff;
-  background: var(--active);
+  color: #222;
+  background: #ddd;
   border: 0;
-  border-radius: 8px;
+  border-radius: 14px;
   cursor: pointer;
 }
 
-.protected-btn:hover {
-  opacity: 0.88;
+.protected-btn-primary {
+  margin-top: 20px;
+  color: #fff;
+  background: #2f6cf8;
+}
+
+.protected-btn:active {
+  filter: brightness(0.92);
 }
 
 .back-link {
